@@ -1,46 +1,74 @@
-# RescueCall AI — Emergency Report Triage (Simulation)
+# 🚨 RescueCall AI — Emergency Report Triage
 
-A **working, local-only hackathon prototype** that groups likely duplicate emergency reports and highlights potentially urgent incidents for human review.
+**RescueCall AI** is a hackathon prototype that organizes simulated emergency calls, groups possible duplicate reports, highlights potentially urgent incidents, and gives a dispatcher a dashboard for human review.
 
-> **Safety:** This is a simulation, **not** a real 911 product. Do not use it for real emergency triage or dispatch. The prioritization and grouping rules are heuristic and can be wrong.
+> **Simulation only:** Not connected to 911 or any real dispatch service. Matching and urgency labels are heuristic, may be wrong, and must not be used for real emergencies.
 
-## Run
+## 🌐 Try the Interactive Live Demo
 
-Requires Python 3.9+; **no pip install needed**.
+[![Launch Live Demo](https://img.shields.io/badge/LAUNCH_LIVE_DEMO-Open_Dashboard-dc2626?style=for-the-badge)](https://Ja-ie-d.github.io/RescueCall-AI/)
+
+**[▶ Open RescueCall AI in your browser](https://Ja-ie-d.github.io/RescueCall-AI/)**
+
+Replace `YOUR-USERNAME` with your GitHub username. Enable **Settings → Pages → Deploy from a branch → main → / (root)**. For this no-install GitHub Pages demo, put the **standalone** `index.html` at the repository root. GitHub Pages hosts static HTML and does **not** run `app.py`.
+
+## ✨ Features
+
+- **18 fictional emergency reports** preloaded for demonstration
+- **Potential duplicate detection** to group reports about the same incident
+- **Urgency indicators** to highlight potentially critical situations
+- **Dispatcher controls:** acknowledge, verify, or mark dispatched (simulation)
+- **Live dashboard updates** when new fictional reports are added
+- **Reset** to restore the original sample data
+- **Responsive layout** for desktop and mobile
+
+## 🔁 How It Works
+
+`Receive simulated reports → Detect likely duplicates → Flag possible urgency → Display incident queue → Dispatcher reviews`
+
+## 🎬 Two-Minute Demo
+
+1. Open the **Live Demo** above.
+2. Look at the incoming-report, incident, duplicate, and critical counters.
+3. Open a crash incident to see multiple caller reports grouped together.
+4. Submit another fictional report at the same location and incident type.
+5. Watch the report and duplicate counts update.
+6. Try **Acknowledge**, **Verify**, and **Mark dispatched**.
+7. Press **Reset** to restore the sample data.
+
+## 💻 Run the Python Backend Version Locally (Optional)
+
+If you also include `app.py` and the **backend-compatible** `index.html` from the Python project, run:
 
 ```bash
 python app.py
 ```
 
-Open **http://localhost:8000** in your browser.
+Then open **http://localhost:8000**. Requires Python 3.9+ and no third-party packages.
 
-## Live demo (2 minutes)
+The backend version uses a Python standard-library HTTP server and JSON API; the GitHub Pages version is a **separate, standalone HTML/JavaScript demo**. Use the standalone `index.html` for GitHub Pages, rather than the backend-dependent HTML page.
 
-1. Open the dashboard: 18 preloaded simulated reports are grouped into incidents.
-2. Show that multiple crash reports at the same intersection appear as **one incident**.
-3. Note that the Union Square medical incident is marked **Critical**.
-4. Click **Add report** to simulate a new caller reporting the same crash.
-5. Watch the incoming report and duplicate counters update.
-6. Click **Acknowledge**, **Verify**, or **Mark dispatched (demo)** to simulate dispatcher review.
-7. Click **Reset demo** to restore the starting state.
+### Backend API
 
-## Technical flow
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/api/incidents` | Read incident groups and counts |
+| POST | `/api/reports` | Add a simulated report |
+| POST | `/api/review` | Update dispatcher review status |
+| POST | `/api/reset` | Restore sample reports |
 
-`Simulated reports → text/location/time comparison → duplicate groups → keyword severity hints → human review dashboard`
+## 🛠 Technology
 
-- **Backend:** Python standard-library HTTP server and JSON API.
-- **Frontend:** Responsive HTML, CSS, JavaScript; polls every five seconds.
-- **Duplicate heuristic:** same incident type + normalized location + within 20 minutes + basic text similarity. Groups may be inaccurate and must be verified.
-- **Severity heuristic:** predefined keywords, not trained AI or clinically validated triage.
-- **Data:** 18 fictional reports, stored in memory. All changes reset when server restarts.
+- **Frontend:** HTML, CSS, JavaScript
+- **Standalone demo:** Browser-side simulated incident grouping and interaction
+- **Optional backend:** Python standard library and JSON endpoints
+- **Matching:** Rule-based heuristics, not a trained machine-learning model
+- **Data:** Fictional reports; no real emergency-call integration
 
-## API
+## 🚀 Future Improvements
 
-- `GET /api/incidents` — incident groups and counts
-- `POST /api/reports` — create simulated report (`description`, `location`, `kind`)
-- `POST /api/review` — update review status (`id`, `status`)
-- `POST /api/reset` — restore initial simulated reports
+Speech-to-text, semantic similarity models, location normalization, audit trails, role-based access, and rigorous human-reviewed safety evaluation.
 
-## Next steps for a real research prototype
+---
 
-Add speech-to-text, sentence embeddings, geocoding, calibrated uncertainty, audit trails, authentication, and human validation using appropriately governed data. A production emergency response tool would require extensive safety testing, operational approval, and integration with dispatch systems.
+**Built as a rapid-response hackathon proof of concept.**
