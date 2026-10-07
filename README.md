@@ -1,74 +1,64 @@
-# 🚨 RescueCall AI — Emergency Report Triage
+# 🚨 RescueCall AI
 
-**RescueCall AI** is a hackathon prototype that organizes simulated emergency calls, groups possible duplicate reports, highlights potentially urgent incidents, and gives a dispatcher a dashboard for human review.
+**Emergency Report Triage & Duplicate Detection — Interactive Hackathon Demo**
 
-> **Simulation only:** Not connected to 911 or any real dispatch service. Matching and urgency labels are heuristic, may be wrong, and must not be used for real emergencies.
+RescueCall AI is a simulated emergency response dashboard designed to help dispatchers review high volumes of incoming reports. It groups potentially duplicate reports, highlights potentially life-threatening incidents, and keeps a human dispatcher in control of decisions.
 
-## 🌐 Try the Interactive Live Demo
+## 🔴 Try the Live Demo
 
-[![Launch Live Demo](https://img.shields.io/badge/LAUNCH_LIVE_DEMO-Open_Dashboard-dc2626?style=for-the-badge)](https://Ja-ie-d.github.io/RescueCall-AI/)
+[![Launch Live Demo](https://img.shields.io/badge/LAUNCH_LIVE_DEMO-RescueCall_AI-E53935?style=for-the-badge)](https://ja-ie-d.github.io/rescuecaller/)
 
-**[▶ Open RescueCall AI in your browser](https://Ja-ie-d.github.io/RescueCall-AI/)**
-
-Replace `YOUR-USERNAME` with your GitHub username. Enable **Settings → Pages → Deploy from a branch → main → / (root)**. For this no-install GitHub Pages demo, put the **standalone** `index.html` at the repository root. GitHub Pages hosts static HTML and does **not** run `app.py`.
+**👉 [Open the interactive RescueCall AI dashboard](https://ja-ie-d.github.io/rescuecaller/)**
 
 ## ✨ Features
 
-- **18 fictional emergency reports** preloaded for demonstration
-- **Potential duplicate detection** to group reports about the same incident
-- **Urgency indicators** to highlight potentially critical situations
-- **Dispatcher controls:** acknowledge, verify, or mark dispatched (simulation)
-- **Live dashboard updates** when new fictional reports are added
-- **Reset** to restore the original sample data
-- **Responsive layout** for desktop and mobile
+- **Simulated emergency reports:** Explore an initial set of 18 sample reports.
+- **Potential duplicate grouping:** Reports about the same incident can be grouped for review.
+- **Priority indicators:** Highlights reports that may involve serious danger.
+- **Dispatcher controls:** Acknowledge, verify, and mark incidents as dispatched in the demo.
+- **Interactive dashboard:** Add simulated reports and watch incident counts update.
 
-## 🔁 How It Works
+## 🔄 How It Works
 
-`Receive simulated reports → Detect likely duplicates → Flag possible urgency → Display incident queue → Dispatcher reviews`
+1. **Receive:** A simulated caller report enters the dashboard.
+2. **Analyze:** The system checks the report type, location, and urgency keywords.
+3. **Group:** Reports with matching incident details are flagged as potential duplicates.
+4. **Prioritize:** Potentially urgent cases appear higher in the incident queue.
+5. **Review:** A dispatcher verifies the information and chooses the next action.
 
-## 🎬 Two-Minute Demo
+## 🧪 Example
 
-1. Open the **Live Demo** above.
-2. Look at the incoming-report, incident, duplicate, and critical counters.
-3. Open a crash incident to see multiple caller reports grouped together.
-4. Submit another fictional report at the same location and incident type.
-5. Watch the report and duplicate counts update.
-6. Try **Acknowledge**, **Verify**, and **Mark dispatched**.
-7. Press **Reset** to restore the sample data.
+Seven reports describing the same vehicle collision may appear as one incident with six potential duplicates, rather than seven unrelated emergencies. The dispatcher can expand the incident to review each report.
 
-## 💻 Run the Python Backend Version Locally (Optional)
-
-If you also include `app.py` and the **backend-compatible** `index.html` from the Python project, run:
-
-```bash
-python app.py
-```
-
-Then open **http://localhost:8000**. Requires Python 3.9+ and no third-party packages.
-
-The backend version uses a Python standard-library HTTP server and JSON API; the GitHub Pages version is a **separate, standalone HTML/JavaScript demo**. Use the standalone `index.html` for GitHub Pages, rather than the backend-dependent HTML page.
-
-### Backend API
-
-| Method | Endpoint | Purpose |
-|---|---|---|
-| GET | `/api/incidents` | Read incident groups and counts |
-| POST | `/api/reports` | Add a simulated report |
-| POST | `/api/review` | Update dispatcher review status |
-| POST | `/api/reset` | Restore sample reports |
-
-## 🛠 Technology
+## 🛠️ Tech Stack
 
 - **Frontend:** HTML, CSS, JavaScript
-- **Standalone demo:** Browser-side simulated incident grouping and interaction
-- **Optional backend:** Python standard library and JSON endpoints
-- **Matching:** Rule-based heuristics, not a trained machine-learning model
-- **Data:** Fictional reports; no real emergency-call integration
+- **Hosting:** GitHub Pages
+- **Prototype logic:** Rule-based duplicate grouping and urgency keyword matching
+- **Data:** Simulated emergency reports
 
-## 🚀 Future Improvements
+This standalone demo does not require a server, API key, or database.
 
-Speech-to-text, semantic similarity models, location normalization, audit trails, role-based access, and rigorous human-reviewed safety evaluation.
+## 💻 Run Locally
 
----
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Ja-ie-d/rescuecaller.git
+   ```
+2. Open the repository folder.
+3. Open `index.html` in your browser.
 
-**Built as a rapid-response hackathon proof of concept.**
+Alternatively, use the [live demo](https://ja-ie-d.github.io/rescuecaller/).
+
+## 🎯 Hackathon Goal
+
+Demonstrate how a lightweight triage interface can reduce repetitive information and help dispatchers review potentially critical emergencies more efficiently during a surge in calls.
+
+## ⚠️ Safety & Limitations
+
+**This is a hackathon simulation, not a real 911 service.** It does not contact emergency responders, connect to live emergency systems, or make real dispatch decisions. Duplicate detection and priority labels are heuristic and can be wrong. A trained human must verify reports and decide on appropriate actions. No claims of operational reliability or real-world response-time improvements are made.
+
+## 🔗 Project Links
+
+- **Live demo:** https://ja-ie-d.github.io/rescuecaller/
+- **GitHub repository:** https://github.com/Ja-ie-d/rescuecaller
